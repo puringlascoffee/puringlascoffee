@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puringla's Coffee</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cafe: #8b674d;
+      --beige: #f3e7dd;
+      --oscuro: #2e2e2e;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--beige);
+      color: var(--oscuro);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: var(--cafe);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      animation: slideDown 1s ease forwards;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.6rem;
+      font-family: 'Miniver', cursive;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .about-section {
+      padding: 140px 40px 80px;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--cafe);
+      position: relative;
+    }
+
+    .about-section h2::after {
+      content: "\f0f4";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 24px;
+      color: var(--cafe);
+      position: absolute;
+      left: -35px;
+      top: 0;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .map-section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 40px;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .map-section h3 {
+      font-size: 1.5rem;
+      color: var(--cafe);
+      margin-bottom: 20px;
+    }
+
+    .map-section iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--cafe);
+      color: white;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="BLANCO.png" alt="Logo">
+      <span>Puringla's Coffee</span>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="about-section" id="inicio">
+    <h2>Nuestra Historia</h2>
+    <p>
+      La historia de Puringla’s Coffee está profundamente ligada a la tradición, el esfuerzo y el amor por la tierra de la familia Banegas - Argueta. Este café nace como una herencia familiar que ha sido transmitida por generaciones desde el corazón de Santiago de Puringla, La Paz, Honduras.
+    </p>
+    <p>
+      Todo comenzó con Fidel Banegas y Natividad Argueta, pioneros en el cultivo del café en la zona. Este legado fue confiado a su hijo Toribio Banegas, quien actualmente lidera el proceso de producción junto a su esposa María Recinos.
+    </p>
+    <p>
+      El café se cultiva de forma artesanal y tradicional: desde la selección de semilla hasta el secado al sol. Cada taza conserva el sabor hondureño de altura, con aroma intenso y cuerpo equilibrado.
+    </p>
+    <p>
+      Actualmente, Puringla's Coffee es producido por Toribio Banegas y su familia: César Elías Banegas Galindo (gerente general), César Orlando Banegas Recinos (relaciones públicas) y Jacqueline Galindo Buck (gerente financiero).
+    </p>
+    <p>
+      Se cultiva en fincas familiares de Santiago de Puringla, y se distribuye en puntos como La Ceiba, Atlántida.
+    </p>
+    <h2>Misión</h2>
+<p>Ofrecer café de la más alta calidad, cultivado de forma sostenible en Santiago de Puringla, La Paz, promoviendo el bienestar de nuestra comunidad y transmitiendo el sabor auténtico de nuestra tierra a cada taza.</p>
+
+<h2>Visión</h2>
+<p>Ser reconocidos a nivel nacional e internacional como un referente de café artesanal hondureño, destacando por nuestra calidad, compromiso ambiental y aporte al desarrollo local.</p>
+
+  </section>
+
+  <section class="map-section">
+    <h3>Ubicación: Santiago de Puringla, La Paz, Honduras</h3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.1017484143836!2d-87.99563142595405!3d14.051013290187633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f659a9fc06a16f3%3A0x27e17f7250b3d1f5!2sSantiago%20de%20Puringla%2C%20La%20Paz%2C%20Honduras!5e0!3m2!1ses!2shn!4v1722362188749!5m2!1ses!2shn" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <footer>
+    &copy; 2025 Puringla's Coffee - Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

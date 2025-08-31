@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de Privacidad | Puringla’s Coffee</title>
+  <meta name="description" content="Política de privacidad de Puringla’s Coffee: cómo recopilamos, usamos y protegemos tus datos." />
+  <style>
+    :root{
+      /* Colores base (café + blanco, minimalista) */
+      --coffee: #6f4e37;     /* café tostado */
+      --coffee-700:#5b3f2e;  
+      --coffee-50:#f8f5f3;   
+      --cream: #ffffff;      /* blanco */
+      --ink: #1f1b16;        /* texto principal */
+      --muted:#6b6b6b;       /* texto secundario */
+      --ok:#2e7d32;          /* acentos accesibles */
+      --danger:#c62828;      /* acentos accesibles */
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--ink);background:var(--coffee-50);} 
+    a{color:var(--coffee-700);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Header fijo minimalista */
+    header{
+      position:sticky;top:0;z-index:10;
+      background:var(--cream);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      backdrop-filter:saturate(140%) blur(6px);
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--coffee-700)}
+    .bean{width:22px;height:22px;display:inline-block}
+    .nav a{padding:8px 12px;border-radius:12px}
+    .nav a:hover{background:rgba(111,78,55,.08)}
+
+    main{padding:40px 20px}
+    .card{
+      background:var(--cream);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:30px; 
+      animation:fadeUp .6s ease both;
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    h1{font-size:clamp(1.6rem, 2.2vw, 2.2rem);margin:10px 0 6px;color:var(--coffee-700)}
+    h2{font-size:1.15rem;margin:26px 0 10px;color:var(--coffee-700)}
+    p,li{line-height:1.7}
+    .muted{color:var(--muted)}
+    .badge{display:inline-block;font-size:.8rem;background:rgba(111,78,55,.08);color:var(--coffee-700);padding:6px 10px;border-radius:999px}
+
+    .list{margin:0;padding-left:18px}
+    .grid{display:grid;gap:16px}
+
+    footer{margin:40px 0 24px;color:var(--muted);font-size:.95rem}
+
+    /* Botón volver */
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,0,0,.08);padding:10px 14px;border-radius:12px;background:var(--cream)}
+    .btn:hover{box-shadow:var(--shadow)}
+
+    /* Aviso cookies minimal */
+    .cookiebar{position:fixed;left:16px;right:16px;bottom:16px;display:none;background:var(--cream);border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow);border-radius:14px;padding:14px 16px;gap:12px;align-items:center}
+    .cookiebar.show{display:flex}
+    .cookiebar p{margin:0}
+    .cookie-actions{margin-left:auto;display:flex;gap:8px}
+    .cookie-actions button{border:0;padding:10px 14px;border-radius:12px;cursor:pointer}
+    .cookie-accept{background:var(--coffee);color:var(--cream)}
+    .cookie-decline{background:transparent;border:1px solid rgba(0,0,0,.08)}
+
+    /* Accesibilidad */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important;transition:none !important}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand" aria-label="Puringla’s Coffee">
+          <path d="M12 2c4.97 0 9 4.03 9 9 0 6.63-5.37 11-9 11S3 17.63 3 11C3 6.03 7.03 2 12 2Z" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M9.5 4.5c1 4 0 7 0 11s2 5 2 5" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <span>Puringla’s Coffee</span>
+      </div>
+      <nav>
+        <a href="index.html" aria-label="Ir a Inicio">Inicio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="card" role="article" aria-labelledby="titulo">
+      <div class="badge" aria-label="Última actualización">Actualizado: 12 de agosto de 2025</div>
+      <h1 id="titulo">Política de Privacidad</h1>
+      <p>En <strong>Puringla’s Coffee</strong> respetamos tu privacidad. Esta política explica qué datos recopilamos, cómo los usamos y qué opciones tienes. Al usar nuestro sitio web, aceptas estas prácticas.</p>
+
+      <h2>1. ¿Quién es el responsable?</h2>
+      <p>Puringla’s Coffee, con operaciones en Santiago de Puringla, La Paz, Honduras. Para consultas sobre privacidad: <a href="mailto:privacidad@puringlascoffee.com">privacidad@puringlascoffee.com</a> o WhatsApp <a href="https://wa.me/50431950938">+504 3195-0938</a>.</p>
+
+      <h2>2. Datos que podríamos recopilar</h2>
+      <ul class="list">
+        <li><strong>Contacto</strong>: nombre, correo y mensaje cuando usas formularios.</li>
+        <li><strong>Pedidos</strong>: datos de envío y contenido del pedido si habilitamos compras.</li>
+        <li><strong>Navegación</strong>: cookies esenciales para funcionar (por ejemplo, recordar el carrito o idioma) y, si lo aceptas, cookies de análisis (tráfico y rendimiento).</li>
+        <li><strong>Soporte</strong>: comunicaciones por correo/WhatsApp/redes.</li>
+      </ul>
+
+      <h2>3. Finalidades del uso</h2>
+      <ul class="list">
+        <li>Responder consultas y brindar soporte.</li>
+        <li>Gestionar pedidos, envíos y facturación si corresponde.</li>
+        <li>Mejorar el sitio y la experiencia (métricas agregadas, no perfiles individuales).</li>
+        <li>Comunicaciones sobre productos, promociones o eventos (con opción de baja en cualquier momento).</li>
+      </ul>
+
+      <h2>4. Base legal</h2>
+      <ul class="list">
+        <li>Tu <strong>consentimiento</strong> (por ejemplo, para marketing o cookies de análisis).</li>
+        <li>La <strong>ejecución de un contrato</strong> (cuando realizas un pedido).</li>
+        <li><strong>Interés legítimo</strong> para operar y mantener la seguridad del sitio.</li>
+      </ul>
+
+      <h2>5. Conservación</h2>
+      <p>Guardamos los datos únicamente el tiempo necesario para la finalidad indicada o lo exigido por ley. Luego los eliminamos o anonimamos de forma segura.</p>
+
+      <h2>6. Compartición</h2>
+      <p>No vendemos tus datos. Podríamos compartirlos con:
+      <ul class="list">
+        <li><strong>Proveedores</strong> que nos ayudan a alojar el sitio, procesar pagos o envíos (con contratos de confidencialidad).</li>
+        <li><strong>Autoridades</strong> si existe una obligación legal.</li>
+      </ul>
+      </p>
+
+      <h2>7. Cookies y analítica</h2>
+      <p>Usamos cookies esenciales para el funcionamiento del sitio. Las cookies de análisis (por ejemplo, para entender qué páginas son más visitadas) solo se activan si das tu consentimiento en el banner de cookies. Puedes cambiar tu decisión más abajo.</p>
+
+      <h2>8. Seguridad</h2>
+      <p>Aplicamos medidas razonables de seguridad (SSL/TLS, control de acceso, copias de respaldo). No obstante, ningún método en Internet es 100% infalible.</p>
+
+      <h2>9. Tus derechos</h2>
+      <ul class="list">
+        <li>Acceder, rectificar o eliminar tus datos.</li>
+        <li>Retirar tu consentimiento en cualquier momento.</li>
+        <li>Oponerte a ciertos tratamientos o solicitar portabilidad.</li>
+      </ul>
+      <p>Para ejercerlos, escríbenos a <a href="mailto:privacidad@puringlascoffee.com">privacidad@puringlascoffee.com</a>. Responderemos lo antes posible.</p>
+
+      <h2>10. Transferencias internacionales</h2>
+      <p>Si nuestros proveedores alojan datos fuera de tu país, exigimos salvaguardas adecuadas (cláusulas contractuales y medidas técnicas).</p>
+
+      <h2>11. Menores de edad</h2>
+      <p>Nuestro sitio no está dirigido a menores de 13 años. Si crees que un menor nos dio datos sin consentimiento, contáctanos para eliminarlos.</p>
+
+      <h2>12. Cambios a esta política</h2>
+      <p>Podemos actualizar esta política para reflejar cambios legales o de funcionamiento. Publicaremos la versión vigente con su fecha de actualización.</p>
+
+
+      </div>
+
+      <footer>
+        <p>¿Dudas sobre privacidad? Escríbenos a <a href="mailto:privacidad@puringlascoffee.com">privacidad@puringlascoffee.com</a>. Ubicación: Santiago de Puringla, La Paz, Honduras.</p>
+      </footer>
+
+      <p><a class="btn" href="index.html">⟵ Volver a Inicio</a></p>
+    </article>
+  </main>
+
+  <!-- Aviso simple de cookies -->
+  <div class="cookiebar" id="cookiebar" role="dialog" aria-live="polite" aria-label="Banner de cookies">
+    <p>Usamos cookies esenciales y, con tu permiso, analíticas para mejorar tu experiencia.</p>
+    <div class="cookie-actions">
+      <button class="cookie-decline" id="cookie-decline">Rechazar</button>
+      <button class="cookie-accept" id="cookie-accept">Aceptar</button>
+    </div>
+  </div>
+
+  <script>
+    // Utilidad mínima para consentimiento de cookies
+    const KEY = 'puringlas_cookie_consent_v1';
+    const bar = document.getElementById('cookiebar');
+    const saved = localStorage.getItem(KEY);
+    if(!saved){ bar.classList.add('show'); }
+
+    function setConsent(value){
+      localStorage.setItem(KEY, value);
+      bar.classList.remove('show');
+    }
+
+    document.getElementById('cookie-accept').addEventListener('click', ()=>setConsent('accepted'));
+    document.getElementById('cookie-decline').addEventListener('click', ()=>setConsent('declined'));
+
+    // Botones dentro de la página para cambiar decisión
+    document.getElementById('btn-accept').addEventListener('click', ()=>setConsent('accepted'));
+    document.getElementById('btn-decline').addEventListener('click', ()=>setConsent('declined'));
+  </script>
+</body>
+</html>

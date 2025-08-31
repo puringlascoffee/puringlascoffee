@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Productos Destacados - Puringla's Coffee</title>
+
+  <style>
+    /* Reset básico y tipografía */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fffaf0;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 1rem 3rem;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      background-color: #8b674d;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    nav.navbar {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+    .logo-text {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      gap: 0.6rem;
+      user-select: none;
+    }
+    .logito {
+      height: 40px;
+      width: auto;
+    }
+
+    /* Navegación */
+    ul.nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 600;
+    }
+    ul.nav-menu li a {
+      color: #f3f0d7;
+      padding: 0.4rem 0.6rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    ul.nav-menu li a:hover,
+    ul.nav-menu li a.active {
+      background-color:#7c5c45#ffe066;
+      color: #574230;
+    }
+
+    /* Menu hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      width: 28px;
+      height: 22px;
+      justify-content: center;
+    }
+    .hamburger span {
+      height: 3px;
+      background-color: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    /* Animar hamburguesa cuando está abierto */
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Navegación en móvil */
+    @media (max-width: 768px) {
+      ul.nav-menu {
+        position: fixed;
+        top: 65px;
+        right: -100%;
+        background-color: #8b674d;
+        height: calc(100% - 65px);
+        width: 200px;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 2rem 1rem;
+        transition: right 0.3s ease;
+        border-radius: 0 0 0 15px;
+        box-shadow: -4px 0 8px rgba(0,0,0,0.3);
+      }
+      ul.nav-menu.open {
+        right: 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* MAIN */
+    main {
+      margin-top: 90px; /* espacio para header fijo */
+      max-width: 1100px;
+      width: 100%;
+      padding: 1rem;
+      animation: zoomIn 0.8s ease forwards;
+      opacity: 0;
+    }
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    h2.section-title {
+      font-size: 2rem;
+      text-align: center;
+      color: #8b674d;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      text-shadow: 1px 1px 2px #e8c27f;
+    }
+
+    /* Contenedor de productos */
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      transition: all 0.4s ease;
+    }
+
+    /* Tarjeta de producto */
+    .menu-item {
+      background: #fff9e6;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      user-select: none;
+      transform-origin: center center;
+      /* tamaño normal */
+      scale: 1;
+      opacity: 1;
+      z-index: 1;
+    }
+    /* Producto expandido */
+    .menu-item.expanded {
+      box-shadow: 0 12px 35px rgb(0 0 0 / 0.3);
+      transform: scale(1.15);
+      z-index: 20;
+      opacity: 1;
+    }
+    /* Productos en segundo plano cuando otro está expandido */
+    .menu-list.dimmed .menu-item:not(.expanded) {
+      transform: scale(0.8);
+      opacity: 0.4;
+      pointer-events: none; /* No poder clickar en ellos mientras otro está expandido */
+      filter: grayscale(30%);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    /* Imagen producto */
+    .menu-image {
+      max-width: 160px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+      margin-bottom: 1rem;
+    }
+    .menu-item.expanded .menu-image {
+      transform: scale(1.15) rotate(3deg);
+    }
+
+    /* Info básica oculta inicialmente */
+    .info {
+      text-align: center;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      padding: 0 0.5rem;
+    }
+    /* Mostrar info cuando expandido */
+    .menu-item.expanded .info {
+      max-height: 400px; /* Ajusta según contenido */
+      opacity: 1;
+      margin-top: 0.8rem;
+    }
+
+    .name {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #8b674d;
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 1px #ffe2a3;
+    }
+    .text {
+      font-size: 0.9rem;
+      color: #8b674d;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #7f5c00;
+    }
+
+    /* Icono de WhatsApp fijo en esquina inferior derecha */
+    .whatsapp-contact {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366; /* verde oficial WhatsApp */
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 2000;
+    }
+    .whatsapp-contact:hover {
+      background-color: #1ebe57;
+    }
+    .whatsapp-contact svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    /* Responsive ajustes */
+    @media (max-width: 480px) {
+      .menu-image {
+        max-width: 120px;
+      }
+      .menu-item.expanded {
+        transform: scale(1.08);
+      }
+      .menu-list.dimmed .menu-item:not(.expanded) {
+        transform: scale(0.9);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Menú principal">
+      <div class="logo-text">
+        <img src="BLANCO.png" alt="Logo Puringla's Coffee" class="logito" />
+        Puringla's Coffee
+      </div>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html" class="active" aria-current="page">Productos</a></li>
+      </ul>
+
+      <div
+        class="hamburger"
+        id="hamburger"
+        aria-label="Menú móvil"
+        aria-expanded="false"
+        role="button"
+        tabindex="0"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section-title">Nuestros Productos Destacados</h2>
+    <div class="menu-list" role="list" id="menu-list">
+      <!-- Producto 1 -->
+      <article
+        class="menu-item"
+        tabindex="0"
+        role="listitem"
+        aria-expanded="false"
+        aria-controls="info1"
+      >
+        <img
+          src="vecteezy_coffee-beans-and-splash-in-cup-with-transparent-background_47490589.png"
+          alt="Café Catuai"
+          class="menu-image"
+        />
+        <div class="info" id="info1">
+          <p class="name">Café Catuai</p>
+          <p class="text">
+            Variedad de café arábica con sabor equilibrado, cuerpo medio y notas
+            dulces y afrutadas.
+          </p>
+          <p class="price">L 120.00</p>
+        </div>
+      </article>
+
+      <!-- Producto 2 -->
+      <article
+        class="menu-item"
+        tabindex="0"
+        role="listitem"
+        aria-expanded="false"
+        aria-controls="info2"
+      >
+        <img
+          src="deliciosa-taza-cafe-aislada.png"
+          alt="Café Parainema"
+          class="menu-image"
+        />
+        <div class="info" id="info2">
+          <p class="name">Café Parainema</p>
+          <p class="text">
+            Variedad resistente con perfil complejo, notas cítricas, especiadas y
+            toque floral.
+          </p>
+          <p class="price">L 135.00</p>
+        </div>
+      </article>
+
+      <!-- Producto 3 -->
+      <article
+        class="menu-item"
+        tabindex="0"
+        role="listitem"
+        aria-expanded="false"
+        aria-controls="info3"
+      >
+        <img
+          src="f6336657-245f-4a2d-be12-f962e5290f43.png"
+          alt="Miel Puringla's"
+          class="menu-image"
+        />
+        <div class="info" id="info3">
+          <p class="name">Miel Puringla's</p>
+          <p class="text">
+            Miel 100% natural, dulce y suave, ideal para endulzar bebidas y
+            postres.
+          </p>
+          <p class="price">L 90.00</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Icono WhatsApp -->
+  <a
+    href="https://wa.me/50499269314?text=Hola%20quiero%20más%20información%20sobre%20los%20productos%20de%20Puringla's%20Coffee"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-contact"
+    aria-label="Contactar por WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M20.52 3.48A11.91 11.91 0 0012 0C5.373 0 .015 5.36 0 12a11.96 11.96 0 002.168 6.34L0 24l5.75-2.154A11.92 11.92 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.19-3.48-8.52zm-8.52 18a9.87 9.87 0 01-5.16-1.47l-.37-.22-3.41 1.28 1.28-3.31-.24-.38A9.906 9.906 0 012 12c0-5.52 4.48-10 10-10a9.94 9.94 0 019.98 10c-.02 5.52-4.48 10-10 10z"
+      />
+      <path
+        d="M17.53 14.18c-.25-.13-1.48-.73-1.7-.81s-.38-.13-.54.13-.62.81-.76.98-.28.2-.53.07a7.39 7.39 0 01-2.18-1.34 8.26 8.26 0 01-1.53-1.9c-.16-.28 0-.43.12-.56.13-.13.28-.32.42-.48.14-.16.18-.28.28-.47a.53.53 0 00-.01-.48c-.07-.13-.54-1.3-.74-1.78s-.38-.42-.54-.43h-.47a1.1 1.1 0 00-.8.38 3.42 3.42 0 00-1 2.42c0 1.42.91 2.8 1.04 3a11.44 11.44 0 005.26 5.66 4.65 4.65 0 002.12.85 2.71 2.71 0 001.2 0 5.24 5.24 0 003.08-2.2 7.59 7.59 0 001.53-4.2 3.36 3.36 0 00-.78-2.35c-.26-.28-.54-.31-.75-.28z"
+      />
+    </svg>
+  </a>
+
+  <script>
+    // Control menú hamburguesa
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+      hamburger.classList.toggle("open");
+      const expanded = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", !expanded);
+    });
+
+    hamburger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        hamburger.click();
+      }
+    });
+
+    // Expande un producto y reduce los otros
+    const menuList = document.getElementById("menu-list");
+    const productos = document.querySelectorAll(".menu-item");
+
+    productos.forEach((item) => {
+      item.addEventListener("click", () => {
+        toggleExpand(item);
+      });
+      item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleExpand(item);
+        }
+      });
+    });
+
+    function toggleExpand(item) {
+      const isExpanded = item.classList.contains("expanded");
+
+      // Si ya está expandido, cerramos todos
+      if (isExpanded) {
+        productos.forEach((p) => {
+          p.classList.remove("expanded");
+          p.setAttribute("aria-expanded", "false");
+        });
+        menuList.classList.remove("dimmed");
+      } else {
+        // Expandir solo el seleccionado y "empaquetar" los demás
+        productos.forEach((p) => {
+          p.classList.remove("expanded");
+          p.setAttribute("aria-expanded", "false");
+        });
+        item.classList.add("expanded");
+        item.setAttribute("aria-expanded", "true");
+
+        // Añadir clase a contenedor para reducir otros productos
+        menuList.classList.add("dimmed");
+
+        // Scroll suave para que se vea el producto expandido
+        item.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  </script>
+<footer style="
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #8b674d;
+  color: #f3f0d7;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.4);
+  z-index: 1500;
+">
+  <p style="margin: 0;">
+    © 2025 Puringla's Coffee. Todos los derechos reservados.
+  </p>
+</footer>
+
+</body>
+</html>
